@@ -33,7 +33,7 @@ Are these parameters used in subsequent calls within the same data flow? Yes, bo
 ### The URI path ###
 The _URI path_ is used to determine if the API call requires authentication or not. The check is made on all incoming API calls, using the CheckRequireAuth function. That function was already implemented, and the new API for license key checking should only be available for authenticated admins.
 
-We need to ask ourselves, _how does this function determine if authentication is required or not?_ Anonymous calls are allowed, iff the URI path *begins with* any of the following:
+We need to ask ourselves, _how does this function determine if authentication is required or not?_ Anonymous calls are allowed if the URI path *begins with* any of the following:
 * "/api/v1/ueba/"
 * "/api/v1/integration/"
 * "/api/v1/dsintegration"
