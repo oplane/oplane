@@ -33,7 +33,7 @@ Are these parameters used in subsequent calls within the same data flow? Yes, bo
 ### The URI path ###
 The _URI path_ is used to determine if the API call requires authentication or not. The check is made on all incoming API calls, using the CheckRequireAuth function. That function was already implemented, and the new API for license key checking should only be available for authenticated admins.
 
-We need to ask ourselves, _how does this function determine if authentication is required or not?_ The answer is, by checking if the URI path *begins with* any of the following:
+We need to ask ourselves, _how does this function determine if authentication is required or not?_ Anonymous calls are allowed if the URI path *begins with* any of the following:
 * "/api/v1/ueba/"
 * "/api/v1/integration/"
 * "/api/v1/dsintegration"
@@ -47,7 +47,7 @@ We need to ask ourselves, _how does this function determine if authentication is
 * "/_/api/aaa"
 * "/api/v1/oidc"
 
-Since the API should require authentication, we shouldn't modify the list above.
+Since the new API should require authentication, we shouldn't modify the list above.
 
 Can any attacker try to manipulate this check? Maybe. What if an attacker crafts a URI path that begins with any of the above, but leads to some other API being called in the Python Rest API? We must assume that the attacker knows how the check is implemented (and how it potentially could be circumvented).
 
